@@ -1,4 +1,5 @@
 const getState = ({ getStore, getActions, setStore }) => {
+	const BASE_URL = "https://rickandmortyapi.com/api"
 	return {
 		store: {
 			demo: [
@@ -13,6 +14,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					initial: "white"
 				}
 			]
+			,
+			characters:[]
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -37,8 +40,23 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				//reset the global store
 				setStore({ demo: demo });
-			}
-		}
+			},
+			getCharacters: () => {
+				fetch(`${BASE_URL}/character`)
+					.then((response) => {
+						return response.json();
+					})
+					.then((data) => {
+						console.log("data: ", data);
+						setStore({characters:data.results})
+
+
+					})
+					.catch((error) => {
+						return console.log("error: ", error)
+					});
+			},
+		},
 	};
 };
 
