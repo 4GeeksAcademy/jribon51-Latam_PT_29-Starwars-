@@ -1,5 +1,5 @@
 const getState = ({ getStore, getActions, setStore }) => {
-	const BASE_URL = "https://rickandmortyapi.com/api"
+	const BASE_URL = "https://www.swapi.tech/api/people/"
 	return {
 		store: {
 			demo: [
@@ -15,7 +15,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			]
 			,
-			characters:[]
+			characters:[],
+			urlImg:[]
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -42,13 +43,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ demo: demo });
 			},
 			getCharacters: () => {
-				fetch(`${BASE_URL}/character`)
+				fetch(`${BASE_URL}`)
 					.then((response) => {
 						return response.json();
 					})
 					.then((data) => {
 						console.log("data: ", data);
-						setStore({characters:data.results})
+						setStore({characters:data.results,urlImg:"https://starwars-visualguide.com/assets/img/characters/"})
 
 
 					})
