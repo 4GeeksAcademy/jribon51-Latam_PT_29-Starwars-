@@ -1,5 +1,9 @@
 const getState = ({ getStore, getActions, setStore }) => {
-	const BASE_URL = "https://www.swapi.tech/api/people/"
+	const BASE_URLPOEPLE = "https://www.swapi.tech/api/people/"
+	const BASE_URLPLANETS = "https://www.swapi.tech/api/planets"
+	const BASE_STARSHIPS = "https://www.swapi.tech/api/starships"
+
+
 	return {
 		store: {
 			demo: [
@@ -15,7 +19,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			]
 			,
-			characters:[],
+			starShips: [],
+			planets: [],
+			peoples: [],
 			urlImg:[]
 		},
 		actions: {
@@ -42,14 +48,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 				//reset the global store
 				setStore({ demo: demo });
 			},
-			getCharacters: () => {
-				fetch(`${BASE_URL}`)
+			getPeoples: () => {
+				fetch(`${BASE_URLPOEPLE}`)
 					.then((response) => {
 						return response.json();
 					})
 					.then((data) => {
 						console.log("data: ", data);
-						setStore({characters:data.results,urlImg:"https://starwars-visualguide.com/assets/img/characters/"})
+						setStore({ peoples: data.results })
 
 
 					})
@@ -57,7 +63,38 @@ const getState = ({ getStore, getActions, setStore }) => {
 						return console.log("error: ", error)
 					});
 			},
-		},
+			getPlanets: () => {
+				fetch(`${BASE_URLPLANETS}`)
+					.then((response) => {
+						return response.json();
+					})
+					.then((data) => {
+						console.log("data: ", data);
+						setStore({ planets: data.results })
+
+
+					})
+					.catch((error) => {
+						return console.log("error: ", error)
+					});
+			},
+			getStarShips: () => {
+				fetch(`${BASE_STARSHIPS}`)
+					.then((response) => {
+						return response.json();
+					})
+					.then((data) => {
+						console.log("data: ", data);
+						setStore({ starShips: data.results })
+
+
+					})
+					.catch((error) => {
+						return console.log("error: ", error)
+					});
+			}
+
+		}
 	};
 };
 
