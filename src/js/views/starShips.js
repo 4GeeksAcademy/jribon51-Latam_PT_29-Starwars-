@@ -37,7 +37,7 @@ export const StarShips = () => {
                                             <Link to={`/learnMore/starShips/${starShip.uid}`} className="btn btn-primary">
                                                 Learn More
                                             </Link>
-                                            <button type="button" className="ms-auto btn btn-outline-warning"><i className="fa-regular fa-heart"></i> </button>
+                                            <button type="button" className="ms-auto btn btn-outline-warning" onClick={()=>{actions.getFavoritos(starShip.name)}}><i className={`fa-regular fa-heart ${store.favoritos.find(favorito => favorito == starShip.name) ? 'fa-solid' : 'fa-regular'}`}></i> </button>
                                         </div>
                                     </div>
                                 </div>

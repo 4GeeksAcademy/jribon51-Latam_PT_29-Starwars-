@@ -9,7 +9,7 @@ export const People = () => {
 
 
     return (
-        <div className="container mt-3 mb-3" >
+        <div className="container mt-5 mb-3 pt-5" >
             <h1>peoples</h1>
             <div className="d-flex scroll-container overflow-auto">
 
