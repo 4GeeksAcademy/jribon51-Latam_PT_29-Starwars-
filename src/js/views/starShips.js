@@ -20,7 +20,13 @@ export const StarShips = () => {
                             <div className="col m-2" key={index}>
 
                                 <div className="card" style={{ width: "18rem" }}>
-                                    <img src={`https://starwars-visualguide.com/assets/img/starships/${starShip.uid}.jpg`} className="card-img-top" alt="..." />
+                                    {/* <img src={`https://starwars-visualguide.com/assets/img/starships/${starShip.uid}.jpg`} className="card-img-top" alt="..." /> */}
+                                    <img
+                                        src={`https://starwars-visualguide.com/assets/img/starships/${starShip.uid > 1 ? starShip.uid : 'placeholder'}.jpg`}
+                                        onError={(e) => { e.target.src = 'https://starwars-visualguide.com/assets/img/placeholder.jpg' }}
+                                        className="card-img-top"
+                                        alt="..."
+                                    />
                                     <div className="card-body">
                                         <h5 className="card-title">{starShip.name} </h5>
                                         <p className="card-text">
@@ -28,7 +34,7 @@ export const StarShips = () => {
                                             the card's content.
                                         </p>
                                         <div className="d-flex">
-                                            <Link to={`/learnMore/starships/${starShip.uid}`} className="btn btn-primary">
+                                            <Link to={`/learnMore/starShips/${starShip.uid}`} className="btn btn-primary">
                                                 Learn More
                                             </Link>
                                             <button type="button" className="ms-auto btn btn-outline-warning"><i className="fa-regular fa-heart"></i> </button>

@@ -10,11 +10,11 @@ export const People = () => {
 
     return (
         <div className="container mt-3 mb-3" >
-            <h1>Peoples</h1>
+            <h1>peoples</h1>
             <div className="d-flex scroll-container overflow-auto">
 
                 {
-                    store.peoples.map((people, index) => {
+                    store.people.map((people, index) => {
                         return (
 
 
@@ -29,10 +29,10 @@ export const People = () => {
                                             the card's content.
                                         </p>
                                         <div className="d-flex">
-                                            <Link to={`/learnMore/peoples/${people.uid}`} className="btn btn-primary">
+                                            <Link to={`/learnMore/people/${people.uid}`} className="btn btn-primary">
                                                     Learn More
                                             </Link>
-                                            <button type="button" className="ms-auto btn btn-outline-warning"><i className="fa-regular fa-heart"></i> </button>
+                                            <button type="button" className="ms-auto btn btn-outline-warning" onClick={()=>{actions.getFavoritos(people.name)}}><i className={`fa-regular fa-heart ${store.favoritos.find(favorito => favorito == people.name) ? 'fa-solid' : 'fa-regular'}`}></i> </button>
                                         </div>
                                     </div>
                                 </div>

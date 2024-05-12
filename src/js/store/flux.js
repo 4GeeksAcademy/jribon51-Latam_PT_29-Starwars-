@@ -21,8 +21,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			,
 			starShips: [],
 			planets: [],
-			peoples: [],
-			urlImg:[]
+			people: [],
+			favoritos: []
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -55,7 +55,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					.then((data) => {
 						console.log("data: ", data);
-						setStore({ peoples: data.results })
+						setStore({ people: data.results })
 
 
 					})
@@ -92,6 +92,29 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.catch((error) => {
 						return console.log("error: ", error)
 					});
+			},
+			getFavoritos: (nombre) => {
+				const store = getStore();
+				if (!store.favoritos.includes(nombre)) {
+					setStore({ favoritos: [...store.favoritos, nombre] })
+					console.log("esta es la impresion de favoritos", getStore().favoritos);
+				}
+
+			},
+			removeFavorite: item => {
+				const store = getStore();
+				// Encontrar el índice del item en la lista de favoritos
+				const index = store.favoritos.indexOf(item);
+				if (index > -1) {
+					// Si el item está en la lista de favoritos, eliminarlo
+					const updatedFavorites = [
+						...store.favoritos.slice(0, index), // Elementos antes del elemento a eliminar
+						...store.favoritos.slice(index + 1) // Elementos después del elemento a eliminar
+					];
+					// Actualizar el estado global con la nueva lista de favoritos
+					setStore({ favoritos: updatedFavorites });
+
+				}
 			}
 
 		}
